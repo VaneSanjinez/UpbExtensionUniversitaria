@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # extension-universitaria-pi
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
@@ -15,3 +16,7 @@ Running `grunt test` will run the unit tests with karma.
 # UpbExtensionUniversitaria
 Proyecto de practica interna, pagina web para la publicación de cursos para extensión universitaria, Sexto Semestre 
 >>>>>>> fa5f13216a554ed2b9c9ad56b6acd9960ab1c0c4
+=======
+# UpbExtensionUniversitaria
+Proyecto de practica interna, pagina web para la publicación de cursos para extensión universitaria, Sexto Semestre
+>>>>>>> 036984e78d0b7ca7ea024919fa0c0ef425704275
