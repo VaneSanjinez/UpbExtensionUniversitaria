@@ -1,72 +1,38 @@
 <form role:"form">
 	<div class="form-group">
 		<label for="nombre">Nombre</label>
-		<input id="nombre" type="text" class="form-control" required>
+		<input id="nombre" ng-model="nombre" type="text" class="form-control" required>
 	</div>
 	<div class="form-group">
-		<label for="apellido">Apellio</label>
-		<input id="apellido" type="text" class="form-control" required> 
+		<label for="apellido">Apellido</label>
+		<input id="apellido" ng-model="apellido" type="text" class="form-control" required> 
+	</div>
+	<div class="form-group">
+		<label for="apellidoMaterno">Apellido Materno</label>
+		<input id="apellidoMaterno" ng-model="apellidoMaterno" type="text" class="form-control" required> 
+	</div>
+	<div class="form-group">	
+		<label for="correo">Email</label>
+		<input id="correo" ng-model="correo" type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+	</div>
+	<div class="form-group">
+		<label for="username">Username</label>
+		<input id="username" ng-model="username" type="text" class="form-control" required> 
 	</div>
 	<div class="form-group">	
 		<label for="password">Password</label>
-		<input id="password" type="password" class="form-control" required>
+		<input id="password" ng-model="password" type="password" class="form-control" required>
 	</div>
 	<div class="form-group">	
-		<label for="email">Email</label>
-		<input id="email" type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-	</div>
-	<div class="form-group">	
-		<label for"profesion">Profesion</label>
-		<select id="profesion" class="form-control" required>	
+		<label for"rubro">Rubro</label>
+		<select id="rubro" ng-model="rubro" class="form-control" required>	
 			<option>Administracion de empresas</option>
 			<option>Administracion turistica</option>
-			<option>Aeronautica civil</option>
-			<option>Agronomia</option>
-			<option>Antropologia</option>
-			<option>Arquitectura</option>
-			<option>Auditoria</option>
-			<option>Bibliotecologia y Cs Informacion</option>
-			<option>Ciencias politicas</option>
-			<option>Comercio exterior</option>
-			<option>Comunicacion Social</option>
-			<option>Contabilidad</option>
-			<option>Contaduria Publica</option>
-			<option>Derecho</option>
-			<option>Diseno Grafico</option>
-			<option>Economia</option>
-			<option>Estadistica</option>
-			<option>Finanzas</option>
-			<option>Fisica</option>
-			<option>General</option>
-		 	<option>Informatica</option>
-			<option>Ingenieria Civil</option>
-			<option>Ingenieria Comercial</option>
-			<option>Ingenieria de Procesos</option>
-			<option>Ingenieria de Redes</option>
-			<option>Ingenieria de Sistemas</option>
-			<option>Ingenieria de Telecomunicaciones</option>
-			<option>Ingenieria Electrica</option>
-			<option>Ingenieria Electromecanica</option>
-			<option>Ingenieria Financiera</option>
-			<option>Ingenieria Industrial</option>
-			<option>Ingenieria Mecanica</option>
-			<option>Ingenieria Mecatronica</option>
-			<option>Ingenieria Metalurgica y Materiales</option>
-			<option>Ingenieria Petrolera</option>
-			<option>Ingenieria Quimica</option>
-			<option>Linguistica e Idiomas</option>
-			<option>Licenciatura</option>
-			<option>Marketing y Publicidad</option>
-			<option>Matematicas</option>
-			<option>Mercadotecnia</option>
-			<option>Secreatriado</option>
-			<option>Topografia</option>
-			<option>Trabajo Social</option>	
 		</select>	
 	</div>
 	<div class="form-group">	
-		<label for"departamento">Departamento</label>
-		<select id="departamento" class="form-control" required>
+		<label for"ciudad">Ciudad</label>
+		<select id="ciudad" ng-model="ciudad" class="form-control" required>
 			<option>Cochabamba</option>
 			<option>La Paz</option>
 			<option>Oruro</option>
@@ -80,6 +46,8 @@
 	</div>
 	<div>
 		<label for="fecha">Fecha</label>
-		<input id="fecha" type="date" class="form-control" required>
-	</div>	
+		<input id="fecha" ng-model="fecha" type="date" class="form-control" required>
+	</div>
+	<br>
+	<button id="btnRegistar" type="button" class="btn btn-primary" ng-click="registrar()">Registrar</button>
 </form>

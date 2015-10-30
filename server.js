@@ -36,21 +36,33 @@ app.post('/select/:table',function(request,response){
 
 app.post("/insert/:table",function(request, response){
 
+	console.log("Insertando");
 	//Deficion de variables
 	var query = "";
 	var columns="";
 	var values="";
 	var coma= "";
-		
+	
+	console.log(request.body);
+
 	//Manejo y Conversion de Solicitud a estructura de consulta
 	var data = JSON.stringify(request.body).replace("{","").replace("}","");
+	console.log(data);
 	var dataArray = data.split(",")
-	manejoConsultaInsert(dataArray,columns,values,coma);
-		
+	console.log(dataArray);
+	
+	for(var i=0;i < dataArray.length;i++){		
+			var colValue = dataArray[i].split(":");
+			columns += coma + colValue[0].substring(1,colValue[0].length - 1);
+			values += coma + "'" + colValue[1].substring(1,colValue[1].length - 1) + "'";
+			coma = ",";
+	}
+
 	//Construccion de la consulta
 	query = "INSERT INTO " +request.params.table+ "(" +columns+ ")";
 	query += " VALUES (" +values+ ");";
-		
+	console.log(query);
+
 	//Coneccion
 	pool.getConnection(function(error,connection){
 
@@ -78,9 +90,15 @@ app.post("/update/:table/:codigo", function(request, response){
 	
 	//Manejo y Conversion de Solicitud a estructura de consulta
 	var data = JSON.stringify(request.body).replace("{","").replace("}","");
-	var dataArray = data.split(",")
-	manejoConsultaUpdate(dataArray,columns,coma);
+	var dataArray = data.split(",");
 
+	for(var i=0;i < dataArray.length;i++){
+		var colValue = dataArray[i].split(":");
+		console.log(colValue[0].substring(1,colValue[0].length - 1));
+		console.log(colValue[1].substring(1,colValue[1].length - 1));
+		Columns += coma + " " +colValue[0].substring(1,colValue[0].length - 1)+" = '"+ colValue[1].substring(1,colValue[1].length - 1) + "'";
+		coma = ",";
+	}
 
 	//Construccion de la consulta	
 	query = "UPDATE " +request.params.table+ " SET " +columns+ " WHERE id = '"+request.params.codigo+"';";
@@ -127,24 +145,6 @@ app.post("/delete/:table/:codigo", function(request, response){
 	});
 
 });
-
-manejoConsultaInsert = function(dataArray,columns,values,coma){
-	for(var i=0;i < dataArray.length;i++){		
-			var colValue = dataArray[i].split(":");
-			columns += coma + colValue[0].substring(1,colValue[0].length - 1);
-			values += coma + "'" + colValue[1].substring(1,colValue[1].length - 1) + "'";
-			coma = ",";
-	}
-}
-manejoConsultaUpdate = function(dataArray,Columns,coma){
-	for(var i=0;i < dataArray.length;i++){
-		var colValue = dataArray[i].split(":");
-		console.log(colValue[0].substring(1,colValue[0].length - 1));
-		console.log(colValue[1].substring(1,colValue[1].length - 1));
-		Columns += coma + " " +colValue[0].substring(1,colValue[0].length - 1)+" = '"+ colValue[1].substring(1,colValue[1].length - 1) + "'";
-		coma = ",";
-	}
-}
 
 var port = 8080;
 app.listen(port);
