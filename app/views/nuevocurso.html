@@ -1,19 +1,23 @@
 <form role="form">
 	<div class="form-group">
 		<label for="titulo">Titulo</label>
-		<input id="titulo" type="text" class="form-control" required>
+		<input id="titulo" ng-model="titulo" type="text" class="form-control" required>
 	</div>
 	<div class="form-group">
 		<label for="organizador">Organizador</label>
-		<input id="organizador" type="text" class="form-control" required>
+		<input id="organizador" ng-model="organizador" type="text" class="form-control" required>
 	</div>
 	<div class="form-group">
 		<label for="fechaDeInicio">Fecha de Inicio</label>
-		<input id="fechaDeInicio" type="date" class="form-control" required> 
+		<input id="fechaDeInicio" ng-model="fechaDeInicio" type="date" class="form-control" required> 
 	</div>
 	<div class="form-group">
-		<label for="departamento">Departamento</label>
-		<select id="departamento" class="form-control" required>
+		<label for="fechaDeFin">Fecha de Fin</label>
+		<input id="fechaDeFin" ng-model="fechaDeFin" type="date" class="form-control" required> 
+	</div>
+	<div class="form-group">
+		<label for="ciudad">Ciudad</label>
+		<select id="ciudad" ng-model="ciudad" class="form-control" required>
 			<option>Cochabamba</option>
 			<option>La Paz</option>
 			<option>Oruro</option>
@@ -27,6 +31,23 @@
 	</div>
 	<div class="form-group">
 		<label for="costo">Costo</label>
-		<input id="costo" type="number" class="form-control" required>
+		<input id="costo" ng-model="costo" type="number" class="form-control" required>
 	</div>
+	<div class="form-group">
+		<label for="descripcion">Descripcion</label>
+		<textarea id="descripcion" ng-model="descripcion" rows="5" class="form-control" required></textarea>
+	</div>
+	<div class="form-group">
+		<label for="archivo">Archivo</label>
+		<input id="archivo" ng-model="archivo" type="file" required>
+	</div>
+	<div class="form-group">
+		<button id="btnNuevoCurso" type="button" class="btn btn-primary" ng-click="nuevoCurso()">Nuevo Curso</button>
+	</div>
+</form>
+
+<form enctype='multipart/form-data'>
+   <input id="costo" ng-model="texto" type="text">
+   <input type="file" name='thumbnail'>
+   <input type="button" value='Subir' ng-click="file()">
 </form>

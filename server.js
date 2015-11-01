@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
+var fs = require('fs');
+var multipart = require('connect-multiparty')
+
 var pool = mysql.createPool({
 	"host":"localhost",
 	"port":3306,
@@ -14,6 +17,7 @@ app.use(express.static(__dirname + "/app"));
 app.use("/bower_components",express.static(__dirname + "/bower_components"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(multipart());
 
 app.post('/select/:table',function(request,response){
 	
@@ -32,6 +36,24 @@ app.post('/select/:table',function(request,response){
 			});
 	});
 
+});
+
+app.post('/upload', function(req, res) {
+    // get the temporary location of the file
+    //console.log(req.body);
+    console.log(req.files.thumbnail.path);
+    /*var tmp_path = req.files.thumbnail.path;
+    // set where the file should actually exists - in this case it is in the "images" directory
+    var target_path = './app/images/' + req.files.thumbnail.name;
+    // move the file from the temporary location to the intended location
+    fs.rename(tmp_path, target_path, function(err) {
+        if (err) throw err;
+        // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
+        fs.unlink(tmp_path, function() {
+            if (err) throw err;
+            console.log('File uploaded to: ' + target_path + ' - ' + req.files.thumbnail.size + ' bytes');
+        });
+    });*/
 });
 
 app.post("/insert/:table",function(request, response){
@@ -62,9 +84,9 @@ app.post("/insert/:table",function(request, response){
 	query = "INSERT INTO " +request.params.table+ "(" +columns+ ")";
 	query += " VALUES (" +values+ ");";
 	console.log(query);
-
+	console.log(request.files.archivo);
 	//Coneccion
-	pool.getConnection(function(error,connection){
+	/*pool.getConnection(function(error,connection){
 
 		if(error){ return console.log(error); }
 		
@@ -77,7 +99,7 @@ app.post("/insert/:table",function(request, response){
 
 		});
 
-	});
+	});*/
 
 });	
 
