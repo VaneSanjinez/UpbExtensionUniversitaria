@@ -1,0 +1,25 @@
+<div class="form-group">
+	<label for="filtro">Filtrar</label>
+	<input id="filtro" ng-model="filtro" type="text" class="form-control">
+</div>
+<div class="form-group">
+	<button id="btnFiltrar" class="form-control" class="btn btn-success" ng-click="filtrar()">Filtrar</button>
+</div>
+
+<div class="panel panel-default" ng-repeat="curso in cursos">
+  <div class="panel-heading">{{curso.Titulo}}</div>
+  <div class="panel-body">Panel Content
+  	
+    	<p class="list-group-item-text">{{curso.Organizador}}</p>
+    	<p class="list-group-item-text">{{curso.FechaInicio}}</p>
+    	<p class="list-group-item-text">{{curso.FechaFin}}</p>
+    	<p class="list-group-item-text">{{curso.Ciudad}}</p>
+    	<p class="list-group-item-text">{{curso.Costo}}</p>
+    	<p class="list-group-item-text">{{curso.Descripcion}}</p>
+    	<br>
+  		<a href="#/nuevocurso" class="list-group-item-text">
+  			<button type="button" class="btn btn-info">Info</button>
+  		</a>
+  
+  </div>
+</div> 

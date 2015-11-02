@@ -9,15 +9,9 @@
  */
 angular.module('extensionUniversitariaPiApp')
   .controller('NuevocursoCtrl', function ($scope,$http){
-    
-    
-  	$scope.file = function(){
-  		$http.post("/upload",$scope.text,$scope.thumbnail);
-  	};
 
   	$scope.nuevoCurso = function(){
-  		
-  		alert("boton");
+ 		
   		var nuevoCurso = {
   			Titulo : $scope.titulo,
   			Organizador : $scope.organizador,
@@ -29,13 +23,13 @@ angular.module('extensionUniversitariaPiApp')
   			                $scope.fechaDeFin.getDate(),
   			Ciudad : $scope.ciudad,
   			Costo : $scope.costo.toString(),
-  			Descripcion : $scope.descripcion,
-  			DireccionArchivo : $scope.archivo
+  			Descripcion : $scope.descripcion
   		};
-  		alert("Enviado");
-  		$http.post("/insert/cursos",nuevoCurso);	
+  		$http.post("/insert/cursos",nuevoCurso);
+
   	};
 
-
+  	
+  	
 
   });

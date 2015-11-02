@@ -40,6 +40,11 @@ angular
         controller: 'NuevocursoCtrl',
         controllerAs: 'nuevocurso'
       })
+      .when('/listacursos', {
+        templateUrl: 'views/listacursos.html',
+        controller: 'ListacursosCtrl',
+        controllerAs: 'listacursos'
+      })
       .otherwise({
         redirectTo: '/'
       });

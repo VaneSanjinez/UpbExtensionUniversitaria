@@ -4,7 +4,6 @@ var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var multipart = require('connect-multiparty')
-
 var pool = mysql.createPool({
 	"host":"localhost",
 	"port":3306,
@@ -18,42 +17,49 @@ app.use("/bower_components",express.static(__dirname + "/bower_components"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(multipart());
+app.use(bodyParser());
 
 app.post('/select/:table',function(request,response){
 	
+	query = "SELECT * FROM " + request.params.table;
+			query += request.body.WHERE;
+	console.log(query);
+
 	//Definicion de Variables
 	var query = "";
 	pool.getConnection(function(error, connection){
-			if(error){
-				return console.log(error);
-			}
 
-			query = "SELECT * FROM " +request.params.table;
-
-			connection.query(qry, function(error, rows, fields){
+			if(error){ return console.log(error); }		
+			
+			connection.query(query, function(error, rows, fields){
+				
 				console.log(rows);
+				response.send(rows);
 				connection.release();
+			
 			});
 	});
 
 });
 
-app.post('/upload', function(req, res) {
-    // get the temporary location of the file
-    //console.log(req.body);
-    console.log(req.files.thumbnail.path);
-    /*var tmp_path = req.files.thumbnail.path;
+app.post('/upload', function(request, response) {0
+    //get the temporary location of the file
+    console.log(request.body);
+    console.log(request.files.thumbnail);
+    var tmp_path = request.files.thumbnail.path;
     // set where the file should actually exists - in this case it is in the "images" directory
-    var target_path = './app/images/' + req.files.thumbnail.name;
+    var target_path = './app/images/' + request.files.thumbnail.name;
     // move the file from the temporary location to the intended location
-    fs.rename(tmp_path, target_path, function(err) {
-        if (err) throw err;
+    fs.rename(tmp_path, target_path, function(error) {
+        if (error) throw error;
         // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
         fs.unlink(tmp_path, function() {
-            if (err) throw err;
-            console.log('File uploaded to: ' + target_path + ' - ' + req.files.thumbnail.size + ' bytes');
+            if (error) throw error;
+            console.log('File uploaded to: ' + target_path + ' - ' + request.files.thumbnail.size + ' bytes');
+        	//response.send(request.files.archivo);
         });
-    });*/
+    });
+
 });
 
 app.post("/insert/:table",function(request, response){
@@ -84,9 +90,9 @@ app.post("/insert/:table",function(request, response){
 	query = "INSERT INTO " +request.params.table+ "(" +columns+ ")";
 	query += " VALUES (" +values+ ");";
 	console.log(query);
-	console.log(request.files.archivo);
 	//Coneccion
-	/*pool.getConnection(function(error,connection){
+	
+	pool.getConnection(function(error,connection){
 
 		if(error){ return console.log(error); }
 		
@@ -99,7 +105,7 @@ app.post("/insert/:table",function(request, response){
 
 		});
 
-	});*/
+	});
 
 });	
 
@@ -136,7 +142,7 @@ app.post("/update/:table/:codigo", function(request, response){
 			if(error){ return console.error(error); }
 
 			connection.release();
-
+		
 		});
 
 	});
