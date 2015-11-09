@@ -1,0 +1,56 @@
+<h2> Perfil de Usuario</h2>
+<form role:"form" ng-hide="perfilUsuario">
+	<div class="form-group">
+		<label for="nombre">Nombre</label>
+		<div>{{usuariop.Nombre}}</div>
+	</div>
+	<div class="form-group">
+		<label for="apellido">Apellido</label>
+		<div>{{usuariop.Apellidop}}</div>
+	</div>
+	<div class="form-group">
+		<label for="apellidoMaterno">Apellido Materno</label>
+		<div>{{usuariop.Apellidom}}</div>
+	</div>
+	<div class="form-group">	
+		<label for="correo">Email</label>
+		<div>{{usuariop.Correo}}</div>
+	</div>
+	<div class="form-group">	
+		<label for"rubro">Rubro</label>
+		<div>{{usuariop.Rubro}}</div>
+	</div>
+	<div class="form-group">	
+		<label for"ciudad">Ciudad</label>
+		<div>{{usuariop.Ciudad}}</div>
+	</div>
+	<div class="form-group">
+		<button id="btnEditar" type="button" class="btn btn-primary" ng-click="editar()">Editar Datos</button>
+	</div>
+</form>
+<form ng-show="editarDatos">
+	<div>
+		<label for="nombre">Nombre </label>
+		<input id="nombre" ng-model="usuariop.Nombre" type="text" class="form-control" required="required">
+	</div>
+	<div>
+		<label for="nombre">Apellido Paterno</label>
+		<input id="nombre" ng-model="usuariop.Apellidop" type="text" class="form-control" required="required">
+	</div>
+	<div>
+		<label for="nombre">Apellido Materno</label>
+		<input id="nombre" ng-model="usuariop.Apellidom" type="text" class="form-control" required="required">
+	</div>
+	<div>
+		<label for="nombre">Rubro</label>
+		<input id="nombre" ng-model="usuariop.Rubro" type="text" class="form-control" required="required">
+	</div>
+	<div>
+		<label for="nombre">Ciudad</label>
+		<input id="nombre" ng-model="usuariop.Ciudad" type="text" class="form-control" required="required">
+	</div>
+	<br>
+	<div class="form-group">
+		<button id="btnGuardar" type="button" class="btn btn-primary" ng-click="guardar()">Guardar Cambios</button>
+	</div>
+</form>

@@ -8,7 +8,7 @@ var pool = mysql.createPool({
 	"host":"localhost",
 	"port":3306,
 	"user":"root",
-	"password":"kmam",
+	//"password":"kmam",
 	"database":"upbexten"
 });
 
@@ -20,13 +20,13 @@ app.use(multipart());
 app.use(bodyParser());
 
 app.post('/select/:table',function(request,response){
-	
+
+	//Definicion de Variables
+	var query = "";	
 	query = "SELECT * FROM " + request.params.table;
 			query += request.body.WHERE;
 	console.log(query);
 
-	//Definicion de Variables
-	var query = "";
 	pool.getConnection(function(error, connection){
 
 			if(error){ return console.log(error); }		
@@ -109,8 +109,7 @@ app.post("/insert/:table",function(request, response){
 
 });	
 
-app.post("/update/:table/:codigo", function(request, response){
-	
+app.post("/update/:table/:codigo", function(request, response){	
 	//Declaracion de variables
 	var query = "";
 	var columns = "";
@@ -174,6 +173,6 @@ app.post("/delete/:table/:codigo", function(request, response){
 
 });
 
-var port = 8080;
+var port = 80;
 app.listen(port);
 console.log("Server is running on " + port);
