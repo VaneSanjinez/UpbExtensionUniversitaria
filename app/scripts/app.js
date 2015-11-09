@@ -45,6 +45,11 @@ angular
         controller: 'ListacursosCtrl',
         controllerAs: 'listacursos'
       })
+      .when('/perfilP', {
+        templateUrl: 'views/perfilp.html',
+        controller: 'PerfilpCtrl',
+        controllerAs: 'perfilP'
+      })
       .otherwise({
         redirectTo: '/'
       });
