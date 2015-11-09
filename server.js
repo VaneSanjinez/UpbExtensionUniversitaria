@@ -21,12 +21,13 @@ app.use(bodyParser());
 
 app.post('/select/:table',function(request,response){
 	
-	query = "SELECT * FROM " + request.params.table;
-			query += request.body.WHERE;
-	console.log(query);
-
 	//Definicion de Variables
 	var query = "";
+
+	query = "SELECT * FROM " + request.params.table;
+	query += request.body.WHERE;
+	console.log(query);
+	
 	pool.getConnection(function(error, connection){
 
 			if(error){ return console.log(error); }		
@@ -81,8 +82,15 @@ app.post("/insert/:table",function(request, response){
 	
 	for(var i=0;i < dataArray.length;i++){		
 			var colValue = dataArray[i].split(":");
+			console.log(colValue);
+			console.log(colValue[0]);
 			columns += coma + colValue[0].substring(1,colValue[0].length - 1);
+			console.log(columns);
+			console.log(colValue[1]);
+			console.log("TAMANO");
+			console.log(colValue[1].length);
 			values += coma + "'" + colValue[1].substring(1,colValue[1].length - 1) + "'";
+			console.log(values);
 			coma = ",";
 	}
 

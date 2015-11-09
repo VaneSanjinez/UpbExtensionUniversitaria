@@ -32,6 +32,15 @@
 	<div class="form-group">
 		<label for="costo">Costo</label>
 		<input id="costo" ng-model="costo" type="number" class="form-control" required>
+	</div class="form-group">
+	<div ng-repeat="interes in intereses">
+	<label><input
+	    type="checkbox"
+	    name="selectedIntereses[]"
+	    value="{{interes}}"
+	    ng-checked="selection.indexOf(interes) > -1"
+	    ng-click="toggleSelection(interes)"
+	  	>{{interes.Nombre}}</label>
 	</div>
 	<div class="form-group">
 		<label for="descripcion">Descripcion</label>

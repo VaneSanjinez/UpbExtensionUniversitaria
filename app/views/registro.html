@@ -30,6 +30,16 @@
 			<option>Administracion turistica</option>
 		</select>	
 	</div>
+	<div class="form-group" ng-repeat="interes in intereses">
+	<label><input
+		class="from-control"
+	    type="checkbox"
+	    name="selectedIntereses[]"
+	    value="{{interes}}"
+	    ng-checked="selection.indexOf(interes) > -1"
+	    ng-click="toggleSelection(interes)"
+	  	>{{interes.Nombre}}</label>
+	</div>
 	<div class="form-group">	
 		<label for"ciudad">Ciudad</label>
 		<select id="ciudad" ng-model="ciudad" class="form-control" required>
