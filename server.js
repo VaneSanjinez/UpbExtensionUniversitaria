@@ -8,7 +8,7 @@ var pool = mysql.createPool({
 	"host":"localhost",
 	"port":3306,
 	"user":"root",
-	"password":"kmam",
+	//"password":"kmam",
 	"database":"upbexten"
 });
 
@@ -20,15 +20,12 @@ app.use(multipart());
 app.use(bodyParser());
 
 app.post('/select/:table',function(request,response){
-<<<<<<< HEAD
-
 	//Definicion de Variables
 	var query = "";	
 	query = "SELECT * FROM " + request.params.table;
 			query += request.body.WHERE;
 	console.log(query);
 
-=======
 	
 	//Definicion de Variables
 	var query = "";
@@ -37,7 +34,6 @@ app.post('/select/:table',function(request,response){
 	query += request.body.WHERE;
 	console.log(query);
 	
->>>>>>> upstream/master
 	pool.getConnection(function(error, connection){
 
 			if(error){ return console.log(error); }		
@@ -129,8 +125,8 @@ app.post("/insert/:table",function(request, response){
 
 app.post("/update/:table/:codigo", function(request, response){	
 	//Declaracion de variables
-	var query = "";
 	var columns = "";
+	var query = "";
 	var coma = "";
 	
 	//Manejo y Conversion de Solicitud a estructura de consulta
@@ -141,12 +137,13 @@ app.post("/update/:table/:codigo", function(request, response){
 		var colValue = dataArray[i].split(":");
 		console.log(colValue[0].substring(1,colValue[0].length - 1));
 		console.log(colValue[1].substring(1,colValue[1].length - 1));
-		Columns += coma + " " +colValue[0].substring(1,colValue[0].length - 1)+" = '"+ colValue[1].substring(1,colValue[1].length - 1) + "'";
+		columns += coma + " " +colValue[0].substring(1,colValue[0].length - 1)+" = '"+ colValue[1].substring(1,colValue[1].length - 1) + "'";
 		coma = ",";
 	}
 
 	//Construccion de la consulta	
-	query = "UPDATE " +request.params.table+ " SET " +columns+ " WHERE id = '"+request.params.codigo+"';";
+	query = "UPDATE " +request.params.table+ " SET " +columns+ " WHERE CodigoUsuarioP = '"+request.params.codigo+"';";
+	console.log(query);
 
 	//Coneccion
 	pool.getConnection(function(error,connection){
@@ -154,7 +151,7 @@ app.post("/update/:table/:codigo", function(request, response){
 		if(error){ return console.log(error); }
 
 		//Envio de consulta
-		connection.query(query,function(or,rows,fields){
+		connection.query(query,function(error,rows,fields){
 			
 			if(error){ return console.error(error); }
 
@@ -191,6 +188,6 @@ app.post("/delete/:table/:codigo", function(request, response){
 
 });
 
-var port = 8080;
+var port = 80;
 app.listen(port);
 console.log("Server is running on " + port);
