@@ -20,15 +20,6 @@ app.use(multipart());
 app.use(bodyParser());
 
 app.post('/select/:table',function(request,response){
-<<<<<<< HEAD
-
-	//Definicion de Variables
-	var query = "";	
-	query = "SELECT * FROM " + request.params.table;
-			query += request.body.WHERE;
-	console.log(query);
-
-=======
 	
 	//Definicion de Variables
 	var query = "";
@@ -37,7 +28,6 @@ app.post('/select/:table',function(request,response){
 	query += request.body.WHERE;
 	console.log(query);
 	
->>>>>>> upstream/master
 	pool.getConnection(function(error, connection){
 
 			if(error){ return console.log(error); }		
