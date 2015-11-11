@@ -3,9 +3,25 @@
 	<input id="filtro" ng-model="filtro" type="text" class="form-control">
 </div>-->
 <div class="form-group">
-<select class="form-control" ng-model="filtro">
-  <option ng-repeat="interes in intereses">{{interes.CodigoInteres}}</option>
+<label for"interesfiltro">Interes</label>
+<select id="interesfiltro" class="form-control" ng-model="filtro">
+  <option value="Todos">Todos</option>
+  <option ng-repeat="interes in intereses" value="{{interes.CodigoInteres}}">{{interes.Nombre}}</option>
 </select>
+<div class="form-group">  
+    <label for"ciudad">Ciudad</label>
+    <select id="ciudad" ng-model="ciudad" class="form-control" required>
+      <option>Todos</option>
+      <option>Cochabamba</option>
+      <option>La Paz</option>
+      <option>Oruro</option>
+      <option>Tarija</option>
+      <option>Santa Cruz</option>
+      <option>Potosi</option>
+      <option>Beni</option>
+      <option>Pando</option>
+      <option>Chuquisaca</option>
+    </select> 
 </div>
 <div class="form-group">
 	<button id="btnFiltrar" class="form-control" class="btn btn-success" ng-click="filtrar()">Filtrar</button>

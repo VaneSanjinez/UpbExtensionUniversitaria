@@ -1,5 +1,5 @@
 <h2> Perfil de Usuario</h2>
-<form role:"form" ng-hide="perfilUsuario">
+<form role="form" ng-hide="perfilUsuario">
 	<div class="form-group">
 		<label for="nombre">Nombre</label>
 		<div>{{usuariop.Nombre}}</div>
@@ -34,23 +34,58 @@
 		<input id="nombre" ng-model="usuariop.Nombre" type="text" class="form-control" required="required">
 	</div>
 	<div>
-		<label for="nombre">Apellido Paterno</label>
-		<input id="nombre" ng-model="usuariop.Apellidop" type="text" class="form-control" required="required">
+		<label for="apellidop">Apellido Paterno</label>
+		<input id="apellidop" ng-model="usuariop.Apellidop" type="text" class="form-control" required="required">
 	</div>
 	<div>
-		<label for="nombre">Apellido Materno</label>
-		<input id="nombre" ng-model="usuariop.Apellidom" type="text" class="form-control" required="required">
+		<label for="apellidom">Apellido Materno</label>
+		<input id="apellidom" ng-model="usuariop.Apellidom" type="text" class="form-control" required="required">
 	</div>
 	<div>
-		<label for="nombre">Rubro</label>
-		<input id="nombre" ng-model="usuariop.Rubro" type="text" class="form-control" required="required">
+		<label for="rubro">Rubro</label>
+		<input id="rubro" ng-model="usuariop.Rubro" type="text" class="form-control" required="required">
 	</div>
 	<div>
-		<label for="nombre">Ciudad</label>
-		<input id="nombre" ng-model="usuariop.Ciudad" type="text" class="form-control" required="required">
+		<label for="ciudad">Ciudad</label>
+		<input id="ciudad" ng-model="usuariop.Ciudad" type="text" class="form-control" required="required">
 	</div>
 	<br>
 	<div class="form-group">
 		<button id="btnGuardar" type="button" class="btn btn-primary" ng-click="guardar()">Guardar Cambios</button>
+	</div>
+</form>
+<form role="form" ng-hide="perfilUsuarioPassword">
+	<div class="form-group">
+		<label for="username">Username</label>
+		<div id="username">{{usuariop.Username}}</div>
+	</div>
+	<div class="form-group">
+		<label for="password">Password</label>
+		<div id="password">*********</div>
+	</div>
+	<div class="form-group">
+		<button id="btnEditar" type="button" class="btn btn-primary" ng-click="editarPassword()">Cambiar Password</button>
+	</div>
+</form>
+<form ng-show="editarDatosPassword">
+	<div>
+		<label for="username">Username</label>
+		<input id="username" ng-model="usuariop.Username" type="text" class="form-control" required="required">
+	</div>
+	<div>
+		<label for="password">Password</label>
+		<input id="password" ng-model="ActualPassword" type="password" class="form-control" required="required">
+	</div>
+	<div>
+		<label for="nuevopassword">Nuevo Password</label>
+		<input id="nuevopassword" ng-model="NuevoPassword" type="password" class="form-control" required="required">
+	</div>
+	<div>
+		<label for="confirmarnuevopassword">Confirmar Nuevo Password</label>
+		<input id="confirmarnuevopassword" ng-model="ConfirmarNuevoPassword" type="password" class="form-control" required="required">
+	</div>
+	<br>
+	<div class="form-group">
+		<button id="btnGuardar" type="button" class="btn btn-primary" ng-click="guardarPassword()">Guardar Cambios</button>
 	</div>
 </form>
