@@ -50,6 +50,16 @@ angular
         controller: 'PerfilpCtrl',
         controllerAs: 'perfilP'
       })
+      .when('/registroInst', {
+        templateUrl: 'views/registroinst.html',
+        controller: 'RegistroinstCtrl',
+        controllerAs: 'registroInst'
+      })
+      .when('/perfili', {
+        templateUrl: 'views/perfili.html',
+        controller: 'PerfiliCtrl',
+        controllerAs: 'perfili'
+      })
       .otherwise({
         redirectTo: '/'
       });
