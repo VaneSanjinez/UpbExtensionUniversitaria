@@ -23,4 +23,18 @@ angular.module('extensionUniversitariaPiApp')
     	$scope.perfilInstitucion = "True";
     	$scope.editarDatos = "False";
     };
+    $scope.guardar = function(){
+      //UPDATE `upbexten`.`usuarioi` SET `Apellidop`='Sanj' WHERE `CodigoUsuarioI`='1';
+      //UPDATE `upbexten`.`usuarioi` SET `NombreInstitucion`='UPSPA' WHERE `CodigoUsuarioI`='1';
+      var registro = {
+        NombreInstitucion:$scope.usuarioi.NombreInstitucion, 
+        Nombre:$scope.usuarioi.Nombre,
+        Apellidop:$scope.usuarioi.Apellidop,
+        Apellidom:$scope.usuarioi.Apellidom,
+        Telefono:$scope.usuarioi.Telefono,
+      };
+    	$http.post("/update/usuarioi/1", registro);
+      
+      alert("Datos actualizados");
+    };
   });
