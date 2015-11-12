@@ -60,6 +60,10 @@ angular
         controller: 'PerfiliCtrl',
         controllerAs: 'perfili'
       })
+      .when('/autentificacion', {
+        templateUrl: 'views/autentificacion.html',
+        controller: 'AutentificacionCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
