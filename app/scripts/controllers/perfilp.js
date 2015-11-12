@@ -9,7 +9,7 @@
  */
 angular.module('extensionUniversitariaPiApp')
   .controller('PerfilpCtrl', function ($scope, $http) {
-
+    
     $scope.usuariop={};
     	var where = " WHERE CodigoUsuarioP = 2";
     	var filtro = {
@@ -22,7 +22,7 @@ angular.module('extensionUniversitariaPiApp')
 
     $scope.editar= function(){
     	$scope.perfilUsuario = "True";
-    	$scope.editarDatos = "False";
+    	$scope.editarDatos = "True";
     };
 
     $scope.guardar = function(){
@@ -39,6 +39,27 @@ angular.module('extensionUniversitariaPiApp')
       alert("Datos actualizados");
     };
 
+    $scope.editarPassword = function(){
+      $scope.perfilUsuarioPassword = "True";
+      $scope.editarDatosPassword = "True";
+    }
+
+    $scope.guardarPassword = function(){
+      if($scope.usuariop.Password == $scope.ActualPassword){
+        if($scope.NuevoPassword == $scope.ConfirmarNuevoPassword){
+          var registro = {
+          Password:$scope.NuevoPassword, 
+          };
+          $http.post("/update/usuariop/2", registro);   
+          alert("Datos actualizados (Password)");  
+        }else{
+          alert("Las Contraseñas no coinciden");
+        }
+      }else{
+        alert("Password Incorrecto");
+      }
+
+    }
 
   });
 
