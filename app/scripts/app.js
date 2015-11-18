@@ -40,7 +40,7 @@ angular
         controller: 'NuevocursoCtrl',
         controllerAs: 'nuevocurso'
       })
-      .when('/listacursos', {
+      .when('/listacursos/:codigo', {
         templateUrl: 'views/listacursos.html',
         controller: 'ListacursosCtrl',
         controllerAs: 'listacursos'
