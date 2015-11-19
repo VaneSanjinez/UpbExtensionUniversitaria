@@ -180,6 +180,7 @@ app.post("/delete/:table/:codigo", function(request, response){
 
 });
 
+//var port = 80;
 var port = 8080;
 app.listen(port);
 console.log("Server is running on " + port);
