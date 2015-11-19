@@ -115,7 +115,7 @@ app.post("/insert/:table",function(request, response){
 	});
 
 });	
-app.post("/update/:table/:codigo", function(request, response){	
+app.post("/update/:table/:columna/:condicion", function(request, response){	
 	//Declaracion de variables
 	var columns = "";
 	var query = "";
@@ -134,7 +134,7 @@ app.post("/update/:table/:codigo", function(request, response){
 	}
 
 	//Construccion de la consulta	
-	query = "UPDATE " +request.params.table+ " SET " +columns+ " WHERE CodigoUsuarioI = '"+request.params.codigo+"';";
+	query = "UPDATE " +request.params.table+ " SET " +columns+ " WHERE " + request.params.columna + " = '"+request.params.condicion+"';";
 	console.log(query);
 
 	//Coneccion

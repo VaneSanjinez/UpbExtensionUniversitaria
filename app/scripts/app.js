@@ -40,7 +40,7 @@ angular
         controller: 'NuevocursoCtrl',
         controllerAs: 'nuevocurso'
       })
-      .when('/listacursos', {
+      .when('/listacursos/:codigo', {
         templateUrl: 'views/listacursos.html',
         controller: 'ListacursosCtrl',
         controllerAs: 'listacursos'
@@ -59,6 +59,14 @@ angular
         templateUrl: 'views/perfili.html',
         controller: 'PerfiliCtrl',
         controllerAs: 'perfili'
+      })
+      .when('/autentificacion', {
+        templateUrl: 'views/autentificacion.html',
+        controller: 'AutentificacionCtrl'
+      })
+      .when('/miscursos/:codigo', {
+        templateUrl: 'views/miscursos.html',
+        controller: 'MiscursosCtrl'
       })
       .otherwise({
         redirectTo: '/'

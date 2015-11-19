@@ -8,9 +8,12 @@
  * Controller of the extensionUniversitariaPiApp
  */
 angular.module('extensionUniversitariaPiApp')
-  .controller('ListacursosCtrl', function ($scope,$http) {
+  .controller('ListacursosCtrl', function ($scope,$http,$routeParams,$location) {
   	
-  	$scope.cursos = {};
+    alert("Parametro Enviado")
+    alert($routeParams.codigo);
+
+  	/*$scope.cursos = {};
   	var where = "";
   	var filtro = {
   			WHERE: where 
@@ -18,15 +21,113 @@ angular.module('extensionUniversitariaPiApp')
   	$http.post("select/cursos",filtro).success(function(data){
   		$scope.cursos = data;
   	});
-
     $scope.intereses = [];  
-    var where = "";
-    var filtro = {
+      var where = "";
+      var filtro = {
+        WHERE: where 
+    }
+    $http.post("select/intereses",filtro).success(function(data){
+        $scope.intereses = data;
+    });*/
+   
+
+    $scope.cursosSugeridos = function(){
+       $scope.interesesUsuario = [];  
+        var where = " WHERE CodigoUsuarioP = " + $routeParams.codigo;
+        var filtro = {
+            WHERE: where 
+         }
+        $http.post("select/usuariopinteres",filtro).success(function(data){  
+          $scope.interesesUsuario = data;
+        
+          var where = " WHERE CodigoInteres = " + $scope.interesesUsuario[0].CodigoInteres;
+          for (var i = 1; i < $scope.interesesUsuario.length; i++) {
+            where += " OR CodigoInteres = '" + $scope.interesesUsuario[i].CodigoInteres + "'"  
+          };
+          where += " GROUP BY CodigoCurso"
+          alert(where);
+          var filtro = {
+            WHERE: where 
+          }
+
+          $scope.sugerenciasUsuario = [];          
+          $http.post("select/cursointeres",filtro).success(function(data){
+            $scope.sugerenciasUsuario = data;
+                
+                var where = " WHERE CodigoCurso = '" + $scope.sugerenciasUsuario[0].CodigoCurso + "'";
+                
+                for (var i = 1; i < $scope.sugerenciasUsuario.length; i++) {
+                  where += " OR CodigoCurso = '" + $scope.sugerenciasUsuario[i].CodigoCurso + "'";  
+                };
+                alert(where);
+                var filtro = {
+                    WHERE: where 
+                } 
+                $scope.cursos = [];
+                $http.post("/select/cursos",filtro).success(function(data){
+                  $scope.cursos = data;
+                });
+
+          });
+        });
+    }
+
+    $scope.cursosSeguidos = function(){
+      $scope.interesesUsuario = [];  
+      var where = " WHERE CodigoUsuarioP = " + $routeParams.codigo;
+      var filtro = {
         WHERE: where 
       }
-    $http.post("select/intereses",filtro).success(function(data){
-      $scope.intereses = data;
-    });
+      $scope.cursosUsuario = [];
+      $http.post("select/cursousuariop",filtro).success(function(data){
+        $scope.cursosUsuario = data;
+          var where = " WHERE CodigoCurso = " + $scope.cursosUsuario[0].CodigoCurso;
+          for (var i = 1; i < $scope.cursosUsuario.length; i++) {
+            where += " OR CodigoCurso = '" + $scope.cursosUsuario[i].CodigoCurso + "'"  
+          };
+          alert(where);
+          var filtro = {
+            WHERE: where 
+          }
+          $scope.cursos = []
+          $http.post("select/cursos",filtro).success(function(data){
+            $scope.cursos = data;
+          });
+      });  
+    }
+
+    $scope.misCursos = function(){
+      var url = "miscursos/" + $routeParams.codigo;
+      alert(url);
+      $location.path(url);
+    }
+
+    /*$scope.mostrarSeguidores = function(codigo){
+      $scope.tusSeguidores = [];  
+      var where = " WHERE CodigoCurso = " + codigo;
+      var filtro = {
+        WHERE: where 
+      }
+      alert(where);
+      $http.post("select/cursousuariop",filtro).success(function(data){
+        $scope.tusSeguidores = data;
+
+          var where = " WHERE CodigoUsuarioP = " + $scope.tusSeguidores[0].CodigoUsuarioP;
+          for (var i = 1; i < $scope.tusSeguidores.length; i++) {
+            where += " OR CodigoUsuarioP = '" + $scope.tusSeguidores[i].CodigoUsuarioP + "'"  
+          };
+          alert(where);
+          var filtro = {
+            WHERE: where 
+          }
+          $scope.usuarios = []
+          $scope.prueba = []
+          $http.post("select/usuariop",filtro).success(function(data){
+            $scope.usuarios = data;
+            $scope.usuarios = $scope.usuarios.concat($scope.usuarios);
+          });
+      });
+    }*/
 
   	$scope.filtrar = function(){
       

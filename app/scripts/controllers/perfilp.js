@@ -34,7 +34,7 @@ angular.module('extensionUniversitariaPiApp')
         Rubro:$scope.usuariop.Rubro,
         Ciudad:$scope.usuariop.Ciudad,
       };
-    	$http.post("/update/usuariop/2", registro);
+    	$http.post("/update/usuariop/CodigoUsuarioP/2", registro);
       
       alert("Datos actualizados");
     };
@@ -50,7 +50,7 @@ angular.module('extensionUniversitariaPiApp')
           var registro = {
           Password:$scope.NuevoPassword, 
           };
-          $http.post("/update/usuariop/2", registro);   
+          $http.post("/update/usuariop/CodigoUsuarioP/2", registro);   
           alert("Datos actualizados (Password)");  
         }else{
           alert("Las Contraseñas no coinciden");
