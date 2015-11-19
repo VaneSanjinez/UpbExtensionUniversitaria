@@ -8,7 +8,7 @@
       <div class="list-group">
         <button type="button" class="list-group-item active" ng-click="cursosSugeridos()" >Cursos Sugeridos</button>
         <button type="button" class="list-group-item" ng-click="cursosSeguidos()">Cursos Que Sigues</button>
-        <button type="button" class="list-group-item">Mis Cursos</button>
+        <button type="button" class="list-group-item" ng-click="misCursos()">Mis Cursos</button>
       </div>
     </div>
     <div class="col-md-9">
@@ -22,7 +22,11 @@
             <p class="list-group-item-text"><strong>Costo: </strong>{{curso.Costo}}</p>
             <p class="list-group-item-text"><strong>Descripcion: </strong>{{curso.Descripcion}}</p>
         </div>
-        <div class="panel-footer"><button type="button" class="btn btn-success" ng-click="seguir({{sugerenciasUsuarioCurso.CodigoCurso}})">Seguir Curso</button></div>
+        
+        <div class="panel-footer">
+          <button type="button" class="btn btn-success" ng-click="seguir({{curso.CodigoCurso}})">Seguir Curso</button>
+        </div>
+
       </div>
 
     </div>

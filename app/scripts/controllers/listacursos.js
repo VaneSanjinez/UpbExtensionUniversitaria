@@ -8,7 +8,7 @@
  * Controller of the extensionUniversitariaPiApp
  */
 angular.module('extensionUniversitariaPiApp')
-  .controller('ListacursosCtrl', function ($scope,$http,$routeParams) {
+  .controller('ListacursosCtrl', function ($scope,$http,$routeParams,$location) {
   	
     alert("Parametro Enviado")
     alert($routeParams.codigo);
@@ -95,6 +95,39 @@ angular.module('extensionUniversitariaPiApp')
           });
       });  
     }
+
+    $scope.misCursos = function(){
+      var url = "miscursos/" + $routeParams.codigo;
+      alert(url);
+      $location.path(url);
+    }
+
+    /*$scope.mostrarSeguidores = function(codigo){
+      $scope.tusSeguidores = [];  
+      var where = " WHERE CodigoCurso = " + codigo;
+      var filtro = {
+        WHERE: where 
+      }
+      alert(where);
+      $http.post("select/cursousuariop",filtro).success(function(data){
+        $scope.tusSeguidores = data;
+
+          var where = " WHERE CodigoUsuarioP = " + $scope.tusSeguidores[0].CodigoUsuarioP;
+          for (var i = 1; i < $scope.tusSeguidores.length; i++) {
+            where += " OR CodigoUsuarioP = '" + $scope.tusSeguidores[i].CodigoUsuarioP + "'"  
+          };
+          alert(where);
+          var filtro = {
+            WHERE: where 
+          }
+          $scope.usuarios = []
+          $scope.prueba = []
+          $http.post("select/usuariop",filtro).success(function(data){
+            $scope.usuarios = data;
+            $scope.usuarios = $scope.usuarios.concat($scope.usuarios);
+          });
+      });
+    }*/
 
   	$scope.filtrar = function(){
       

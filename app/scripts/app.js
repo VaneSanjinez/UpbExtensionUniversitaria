@@ -64,6 +64,10 @@ angular
         templateUrl: 'views/autentificacion.html',
         controller: 'AutentificacionCtrl'
       })
+      .when('/miscursos/:codigo', {
+        templateUrl: 'views/miscursos.html',
+        controller: 'MiscursosCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
